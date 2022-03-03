@@ -1,0 +1,101 @@
+& {
+  // background-image: url('/texture.jpg');
+  background: url('/background.png');
+  // background-repeat: fixed;
+  background-attachment: fixed;
+  background-position: 44% 40%;
+  background-size: cover;
+  width: 100vw;
+  height: 100%;
+  // min-height: 100vh;
+  // opacity: 0.15;
+  // position: absolute;
+}
+
+@keyframes pulseOpacity {
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.bg-3, .bg-2 {
+  animation: pulseOpacity 10s alternate infinite;
+  animation-timing-function: ease-in-out
+
+  // -webkit-transition: background 1s ease-out;  
+  // -moz-transition: background 1s ease-out;  
+  // -o-transition: background 1s ease-out;  
+  // transition: background 1s ease-out;  
+}
+.bg-2 {
+  background: linear-gradient(111deg, rgba(0,0,0,0.20) 65%, #f3e25d33 67%, rgba(255,255,255,0.00) 68%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-3 {
+  background: linear-gradient(249deg, rgba(0,0,0,0.20) 65%, #f3e25d33 67%, rgba(255,255,255,0.00) 68%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+
+.bg-4 {
+  background: linear-gradient(250deg, rgba(0,0,0,0.20) 55%, #f3e25d33 57%, rgba(255,255,255,0.00) 58%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-5 {
+  background: linear-gradient(110deg, rgba(0,0,0,0.20) 55%, #f3e25d33 57%, rgba(255,255,255,0.00) 58%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-6 {
+  background: linear-gradient(70deg, rgba(0,0,0,0.20) 55%, #f3e25d33 67%, rgba(255,255,255,0.00) 68%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-7 {
+  background: linear-gradient(-70deg, rgba(0,0,0,0.20) 0%, #f3e25d33 22%, rgba(255,255,255,0.00) 24%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-8 {
+  background: linear-gradient(70deg, rgba(0,0,0,0.20) 0%, #f3e25d33 22%, rgba(255,255,255,0.00) 24%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+.bg-9 {
+  background: linear-gradient(290deg, rgba(0,0,0,0.20) 55%, #f3e25d33 67%, rgba(255,255,255,0.00) 68%);
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+
+.bg-10 {
+  background: linear-gradient(0deg, #f3e25d22 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0.20) 85%, rgba(0,0,0,1) 95%, #f3e25d22 100%);
+  opacity: 0.8;
+  position: absolute;
+  min-height: 100vh;
+  height: 100vw;
+  width: 100vw;
+}
+// .bg-5 {
+//   background: linear-gradient(0deg, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0) 52%, rgba(23,23,23,0.00) 98%);
+//   position: fixed;
+//   height: 100vh;
+//   width: 100vw;
+// }

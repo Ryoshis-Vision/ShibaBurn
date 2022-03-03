@@ -1,0 +1,27 @@
+<div class='logo-wrapper logo-option-2 full-width'>
+  <div class='flex-center'>
+    <div class='logo-wrapper no-underline no-border' >
+      {{#link-to 'index' class='no-underline no-border'}}
+        <img class='logo' src='/shiba-logo-2.png' />
+      {{/link-to}}
+      <div class='flex-column justify-center'>
+        {{#link-to 'index' class='no-underline no-border'}}
+          <div class='logo-text gold'>
+            SHIBABURN
+          </div/>
+        {{/link-to}}
+        <a href='https://ryoshi.vision' class='no-border left-align-grow-on-hover ' target='_blank'>
+          <div class='font-12'>
+            powered by <span class='gold'>ryoshis vision</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class='flex-center flex-column fixed right hidden-sm'>
+      {{current-wallet}}
+    </div>
+  </div>
+</div>
+<div class='padded gold network-name'>
+  {{ethereum.environmentIndicator}}
+</div>

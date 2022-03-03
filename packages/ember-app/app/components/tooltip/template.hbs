@@ -1,0 +1,16 @@
+<div class='container'  >
+  <div class='click-bg' {{action 'toggleVisibility'}}>
+  </div>
+  <div class='button wrapper flex-center' {{action 'toggleVisibility'}}>
+    {{#if showGear}}
+      <img class='gear' src='/gear.svg'/>
+    {{else}}
+      <span>
+      ?
+      </span>
+    {{/if}}
+  </div>
+  <div class='content wrapper padded'>
+    {{yield}}
+  </div>
+</div>

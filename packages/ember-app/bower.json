@@ -1,0 +1,6 @@
+{
+  "name": "app",
+  "dependencies": {
+    "web3": "^3.0.0"
+  }
+}

@@ -1,0 +1,183 @@
+&{
+  // margin-bottom: 200px;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  @media (max-width: 1200px) {
+    background: linear-gradient(#000000 0%, #000000aa 90%, #00000000 100%);
+  }
+}
+.bold {
+  font-weight: 700;
+}
+.logo-text {
+  // color: #ffa409;
+  font-size: 2rem;
+  align-self: center;
+  line-height: 2rem;
+  font-family: Kanit,Avenir,Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+.whitepaper {
+  padding: 0px;
+  padding-right: 20px;
+  border-right: 1px solid white;
+}
+.menu {
+  background-color: #000;
+  position: absolute;
+  top: 100px;
+}
+.logo-wrapper {
+  // position: absolute;
+  // top: 0px;
+
+  //OPTION 1
+  &.logo-option-1 {
+    .logo {
+      z-index: 2;
+      height: 200px;
+      margin: auto;
+      display: block;
+      // top: -2px;
+      // left: 620px;
+    }
+    .logo-text {
+      position: relative;
+      top: -10px;
+      width: 437px;
+      max-width: 100vw;
+      margin: auto;
+      text-align: center;
+      font-size: 40px;
+      // margin-left: 120px;
+    }
+  }
+
+  //OPTION 2
+  &.logo-option-2 {
+    .logo-wrapper {
+      display: flex;
+      width: 100%;
+    }
+    .logo {
+      height: 80px;
+      margin: 10px;
+      top: -2px;
+      left: -20px;
+    }
+    .logo-text {
+      max-height: 150px;
+      // margin-top: 20px;
+      font-size: 30px;
+    }
+  }
+
+  //OPTION 3
+  &.logo-option-3 {
+    .logo {
+      height: 200px;
+      margin: 10px 40px;
+      position: fixed;
+      right: -20px;
+      bottom: 0;
+    }
+    .logo-text {
+      max-height: 70px;
+      font-size: 50px;
+      margin: 20px;
+    }
+  }
+
+
+
+}
+.container {
+  // height: 90px;
+  display: flex;
+  justify-content: space-between;
+  // background-color: #0002;
+  // box-shadow: 0px 2px 3px 2px #0003;
+  // margin-bottom: 20px;
+}
+.networks a {
+  color: white;
+  margin-left: 20px;
+}
+.navigation {
+  z-index: 3;
+}
+@font-face {
+  font-family: 'Fire';
+  src: url(/fonts/extrahotsecretary.ttf) format('truetype');
+}
+.title {
+  font-size: 8vw;
+  width: 80vw;
+  margin: 40px auto 10px;
+  padding: 10px;
+  // font-family: 'Fire';
+  background-color: #f3ec78;
+  background-image: radial-gradient(circle, #c15a11 0%, #f3e25d 16%, #f3e25d 44%, #c15a11 65%, rgb(0, 0, 0) 87%);
+  background-size: 70%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+
+  font-weight: bold;
+  font-family: arial;
+  text-shadow: 0px 2px 2px #000;
+
+  text-align: center;
+  line-height: 90px;
+
+    animation: move 10s alternate infinite;
+		animation-timing-function: ease-in-out
+}
+@keyframes move {
+  50% {
+    background-size: 150%;
+  }
+}
+.top-left {
+  position: absolute;
+  left: 0;
+  a {
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+.top-right {
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  &:hover {
+    opacity: 1;
+  }
+}
+.token-price {
+  position: absolute;
+  right: 0;
+}
+@media (max-width: 865px) {
+  .title {
+    font-size: 90px;
+    margin: 50px auto 0px;
+  }
+  * {
+    font-size: 14px;
+  }
+}
+@media (max-width: 450px) {
+  .title {
+    font-size: 60px;
+    margin: 50px auto 0px;
+    line-height: 60px;
+  }
+  * {
+    font-size: 14px;
+  }
+}

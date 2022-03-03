@@ -1,0 +1,28 @@
+.wrapper {
+  text-align: center;
+}
+.border-right {
+  border-right: 1px solid white;
+}
+@media (max-width: 555px) {
+  .address {
+    padding: 5px;
+  }
+}
+& {
+  font-weight: bold;
+  font-size: 14px;
+  color: #d5d5d5;
+}
+.address, .balance {
+  cursor: pointer;
+  padding: 6px 14px;
+  white-space: nowrap;
+  border: 2px solid #d5d5d5;
+}
+&.wrong-network {
+  .address, .balance {
+    color: #fd5252;
+    border: 0px;
+  }
+}

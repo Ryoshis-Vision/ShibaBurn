@@ -1,0 +1,113 @@
+<div class='gold font-12 margin-top flex-center'>
+  WARNING: DO NOT BURN, THIS PROJECT IS NOT YET LIVE.
+</div>
+<div class=' flex-center gradient-border wrapper double-padded pad-top'>
+  <div class='sized-wrapper font-20 align-center'>
+    <div class='font-32 margin-bottom'>
+      TURN YOUR <b>${{ethereum.tokenSymbol}}</b>
+      <br>
+      INTO A <b>PASSIVE INCOME</b>
+    </div>
+    {{#link-to 'details' class='gold'}}
+      LEARN MORE
+    {{/link-to}}
+  </div>
+</div>
+<div class='pad-top'></div>
+<div class='flex-center gradient-border wrapper double-padded'>
+  <div class='sized-wrapper'>
+    {{burnt-amounts}}
+
+    <div class='inner-wrapper double-padded align-center relative'>
+      {{#if ethereum.currentAddress }}
+        {{#if ethereum.userDataRetrieved}}
+            {{#tooltip showGear=true class='slippage right margin-right absolute'}}
+              Slippage:
+              {{input value=ethereum.visibleSlippage class='half-margin-top inner-wrapper pad-y' }}
+              <span class='font-24'>%</span>
+            {{/tooltip}}
+          <div>
+            <b>YOUR ETH BALANCE:</b>
+            {{commatize ethereum.userEthBalance}}
+            ETH
+          </div>
+          {{ember-slider initialValue=ethereum.initalBurnPercentage config=sliderOptions onChange=(action 'onPercentChange')}}
+
+          <div class='flex-center margin-top'>
+            <div {{action 'onPercentChange' 25}}>
+              <b  class='pointer padded gold grow-on-hover'>
+                25%
+              </b>
+            </div>
+            <div {{action 'onPercentChange' 50}}>
+              <b  class='pointer padded gold grow-on-hover'>
+                50%
+              </b>
+            </div>
+            <div {{action 'onPercentChange' 75}}>
+              <b  class='pointer padded gold grow-on-hover'>
+                75%
+              </b>
+            </div>
+            <div {{action 'onPercentChange' 100}}>
+              <b  class='pointer padded gold grow-on-hover'>
+                100%
+              </b>
+            </div>
+          </div>
+          {{onValueChange}}
+          {{#if ethereum.contractError}}
+            <div class='red font-14'>
+              {{ethereum.contractError}}
+            </div>
+          {{/if}}
+          <div class='flex-center margin-top'>
+            <div class='dark-bg motion-inner flex-center burn-form'>
+              {{input value=amountToBurn class='pad-y' }}
+              <div class='full-width'></div>
+              <div {{action 'burn'}} class='gold padded bold button'>
+                BUY & BURN
+              </div>
+            </div>
+          </div>
+          <div class='gold font-12 margin-top'>
+            WARNING: Burning will remove ETH from your wallet forever.
+          </div>
+        {{else}}
+          {{loader}}
+        {{/if}}
+      {{else}}
+        <div class='gold uppercase'>
+          {{current-wallet}}
+        </div>
+      {{/if}}
+
+    </div>
+    {{#if ethereum.currentAddress }}
+      {{#if ethereum.userDataRetrieved}}
+        <div class='inner-wrapper double-padded align-center margin-top relative'>
+          {{#tooltip class='right margin-right absolute'}}
+            These values are subject to change based on the price of <b>{{ethereum.tokenSymbol}}</b>,
+            the price of the reward tokens, and the total amount of <b>{{ethereum.tokenSymbol}}</b> that has been burnt.
+          {{/tooltip}}
+          <div>
+            <b>BURN VALUE:</b>
+            ${{commatize ethereum.buyAndBurnAmountUSD}}
+          </div>
+          <div>
+            <b>ESTIMATED WEEKLY RETURN:</b>
+            ${{commatize ethereum.buyAndBurnWeeklyReturnUSD}}
+          </div>
+        </div>
+        <div class='align-center flex-center margin-top '>
+          Click here to return to the
+          {{#link-to 'burn.token' ethereum.tokenAddress class='gold half-margin-x '}}
+            "just burn"
+          {{/link-to}}
+          page
+        </div>
+      {{/if}}
+      {{claim-rewards}}
+    {{/if}}
+  </div>
+</div>

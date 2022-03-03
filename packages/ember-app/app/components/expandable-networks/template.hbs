@@ -1,0 +1,34 @@
+
+<!-- This is not used anywhere, but I wrote the code, -->
+<!-- and didn't wnat to throw it away necessarily. -->
+<!-- Maybe we'll use it in the future. -->
+
+      {{#if networksExpanded}}
+        <div class='bold pointer' {{action 'toggleNetworksExpanded'}}>
+          ›
+        </div>
+        <div class='networks flex-column'>
+          <a href='#' {{action 'setNetwork' 'arbitrum'}} class='arbitrum-link'>
+            ARBITRUM
+          </a>
+          <a href='#' {{action 'setNetwork' 'eth'}} class='eth-link'>
+            ETH
+          </a>
+          <a href='#' {{action 'setNetwork' 'bsc'}} class='bsc-link'>
+            BSC
+          </a>
+          <a href='#' {{action 'setNetwork' 'matic'}} class='matic-link'>
+            MATIC
+          </a>
+        </div>
+      {{else}}
+        <div class='bold pointer' {{action 'toggleNetworksExpanded'}}>
+          ⌄
+        </div>
+        <div class='networks'{{action 'toggleNetworksExpanded'}}>
+          <a href='#' class='{{ethereum.network}}-link'>
+            {{ethereum.currency}}
+          </a>
+        </div>
+      {{/if}}
+

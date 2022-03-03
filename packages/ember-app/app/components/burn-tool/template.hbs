@@ -1,0 +1,128 @@
+<div class='gold font-12 margin-top flex-center'>
+  WARNING: DO NOT BURN, THIS PROJECT IS NOT YET LIVE.
+</div>
+<div class=' flex-center gradient-border wrapper double-padded pad-top'>
+  <div class='sized-wrapper font-20 align-center'>
+    <div class='font-32 margin-bottom'>
+      TURN YOUR <b>${{ethereum.tokenSymbol}}</b>
+      <br>
+      INTO A <b>PASSIVE INCOME</b>
+    </div>
+    {{#link-to 'details' class='gold'}}
+      LEARN MORE
+    {{/link-to}}
+  </div>
+</div>
+<div class='pad-top'></div>
+
+  <div class='flex-center gradient-border wrapper double-padded'>
+    <div class='sized-wrapper'>
+      {{burnt-amounts}}
+
+      <div class='inner-wrapper double-padded align-center'>
+        {{#if ethereum.currentAddress }}
+          {{#if ethereum.userDataRetrieved}}
+            {{#if ethereum.tokenBalancePresent}}
+              <div>
+                <b>YOUR TOKEN BALANCE:</b>
+                {{commatize ethereum.userTokenBalance}}
+                {{ethereum.tokenSymbol}}
+              </div>
+              {{ember-slider initialValue=ethereum.initalBurnPercentage config=sliderOptions onChange=(action 'onPercentChange')}}
+
+              <div class='flex-center margin-top'>
+                <div {{action 'onPercentChange' 25}}>
+                  <b  class='pointer padded gold grow-on-hover'>
+                    25%
+                  </b>
+                </div>
+                <div {{action 'onPercentChange' 50}}>
+                  <b  class='pointer padded gold grow-on-hover'>
+                    50%
+                  </b>
+                </div>
+                <div {{action 'onPercentChange' 75}}>
+                  <b  class='pointer padded gold grow-on-hover'>
+                    75%
+                  </b>
+                </div>
+                <div {{action 'onPercentChange' 100}}>
+                  <b  class='pointer padded gold grow-on-hover'>
+                    100%
+                  </b>
+                </div>
+              </div>
+              {{onValueChange}}
+              {{#if ethereum.contractError}}
+                <div class='red font-14'>
+                  {{ethereum.contractError}}
+                </div>
+              {{/if}}
+              <div class='flex-center margin-top'>
+                <div class='dark-bg motion-inner flex-center burn-form'>
+                  {{input value=ethereum.amountToBurn min=0 type='number' class='pad-y' }}
+                  <div class='full-width'></div>
+                  {{#if burnAllowed}}
+                    <div {{action 'burn'}} class='gold padded bold button'>
+                      BURN NOW
+                    </div>
+                  {{else if burnValid}}
+                    <div {{action 'approve'}} class='gold padded bold button'>
+                      APPROVE
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+              {{#if burnAllowed}}
+                <div class='gold font-12 margin-top'>
+                  WARNING: Burning your {{ethereum.tokenSymbol}} will remove it from your wallet forever.
+                </div>
+              {{/if}}
+            {{else}}
+              <div class=' flex-center flex-column gradient-border wrapper double-padded pad-top'>
+                <div class='font-24 bright'>
+                  It looks like your ${{ethereum.tokenSymbol}} balance is ZERO!
+                </div>
+                {{#link-to 'buy-and-burn' ethereum.tokenAddress class='gold double-margin'}}
+                  CLICK HERE TO BUY AND BURN ${{ethereum.tokenSymbol}}
+                {{/link-to}}
+                <!-- <a class='gold' href="https://shibaswap.com/#/swap?outputCurrency={{ethereum.tokenSymbol}}"> -->
+                  <!--   BUY ${{ethereum.tokenSymbol}} ON SHIBASWAP -->
+                <!-- </a> -->
+              </div>
+            {{/if}}
+          {{else}}
+            {{loader}}
+          {{/if}}
+        {{else}}
+        <div class='gold uppercase'>
+          {{current-wallet}}
+        </div>
+        {{/if}}
+
+      </div>
+      {{#if ethereum.tokenBalancePresent}}
+        <div class='inner-wrapper double-padded align-center margin-top relative'>
+          {{#tooltip class='right margin-right absolute'}}
+            These values are subject to change based on the price of <b>{{ethereum.tokenSymbol}}</b>,
+            the price of the reward tokens, and the total amount of <b>{{ethereum.tokenSymbol}}</b> that has been burnt.
+          {{/tooltip}}
+          <div>
+            <b>BURN VALUE:</b>
+            ${{commatize ethereum.burnAmountUSD}}
+          </div>
+          <div>
+            <b>ESTIMATED WEEKLY RETURN:</b>
+            ${{commatize ethereum.weeklyReturnUSD}}
+          </div>
+        </div>
+        <div class='align-center flex-center margin-top '>
+          Not enough {{ethereum.tokenSymbol}}?
+          {{#link-to 'buy-and-burn' ethereum.tokenAddress class='gold margin-left '}}
+            buy and burn in a single tx
+          {{/link-to}}
+        </div>
+      {{/if}}
+      {{claim-rewards}}
+    </div>
+  </div>

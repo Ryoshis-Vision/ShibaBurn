@@ -1,0 +1,60 @@
+<!-- <div class='align-center margin-bottom'> -->
+<!--  <div>RYOSHIS BURN PORTAL FOR</div> -->
+<!--   <h2 class='font-36'> -->
+<!--     <div class='bright'> -->
+<!--      {{ethereum.fullTokenName}} -->
+<!--     </div> -->
+<!--   </h2> -->
+<!-- </div> -->
+<div class='flex align-center'>
+  <div class='full-width flex space-between margin-bottom full-width'>
+    <div class='inner-wrapper padded full-width'>
+
+      TOTAL BURNT:
+      <b class='nobreak '>
+        {{commatize ethereum.totalBurnt}}
+        {{ethereum.tokenSymbol}}
+      </b>
+
+
+
+      {{#if ethereum.currentAddress }}
+        {{#if ethereum.userDataRetrieved}}
+          <hr>
+          YOU BURNT:
+          <b class='nobreak margin-bottom'>
+            {{commatize ethereum.userBurnt}}
+            {{ethereum.tokenSymbol}}
+          </b>
+
+          <hr>
+          <span class='nobreak'>YOU OWN</span>
+          <b class='font-36 half-pad-x nobreak'>
+            {{ownershipPercent}}%
+          </b>
+          <span class='nobreak'>of the pool!</span>
+        {{else}}
+            {{loader}}
+        {{/if}}
+      {{/if}}
+      
+    </div>
+    <div class='half-padded'> </div>
+    <div class='inner-wrapper padded relative full-width'>
+      {{#tooltip class='right margin-right absolute'}}
+        This is calculated based on the summation of all rewards configured for burning <b>{{ethereum.tokenSymbol}}</b>
+        over the course of an entire year
+      {{/tooltip}}
+
+      <div class='full-width flex-column flex-center full-height'>
+        TOTAL APR:
+        <b class='font-36 half-pad-x'>
+          {{commatize ethereum.totalAPR}}%
+        </b>
+      </div>
+      <br>
+
+
+    </div>
+  </div>
+</div>

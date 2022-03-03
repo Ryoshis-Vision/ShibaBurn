@@ -1,0 +1,7 @@
+{
+  "output": "generated/burntShib.",
+  "chain": "mainnet",
+  "datasources": [
+    { "address": "0x7e743f75c2555a7c29068186feed7525d0fe9195", "startBlock": 14279926 , "module": [ "erc20" ] }
+  ]
+}

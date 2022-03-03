@@ -1,0 +1,27 @@
+<div class='flex-wrap flex-center'>
+  {{#if ethereum.currentAddress }}
+    {{#if ethereum.userDataRetrieved}}
+      {{#each ethereum.rewardConfigs as |config|}}
+        <div class='margin-inbetween half-width inner-wrapper double-padded align-center margin-top'>
+          Woofable {{config.rewardName}}:
+          <div class='font-34 padded '>
+            <b class=''>
+            0.0000
+            </b>
+            <div class='font-14 green bold'>
+              Woofed till now:
+              <span class='nobreak'>
+                0 {{config.rewardName}}
+              </span>
+            </div>
+          </div>
+          <div {{action 'onPercentChange' 100}}>
+            <b class='pointer gold grow-on-hover margin-top'>
+              WOOF <span class='nobreak'>{{config.rewardName}}</span>
+            </b>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  {{/if}}
+</div>
