@@ -1,19 +1,24 @@
-<div class='wrapper double-padded flex-center'>
-	{{#link-to 'burn.token' 'shib' class='no-underline'}}
-		<button class='button'>
-			BURN SHIB
-		</button>
-	{{/link-to}}
-  <button class='button'>
-    BURN LEASH
-  </button>
-  <button class='button'>
-    BURN BONE
-  </button>
-  <button class='button'>
-    BURN RYOSHI
-  </button>
+<div class='gold font-12 margin-top flex-center'>
+  WARNING: DO NOT BURN, THIS PROJECT IS NOT YET LIVE.
 </div>
-<!-- <a class='button'> -->
-<!--   BURN CUSTOM TOKEN -->
-<!-- </a> -->
+<div class=' flex-center gradient-border wrapper double-padded pad-top'>
+  <div class='sized-wrapper font-20 align-center'>
+    <div class='font-32 margin-bottom'>
+      TURN YOUR <b>${{ethereum.tokenSymbol}}</b>
+      <br>
+      INTO A <b>PASSIVE INCOME</b>
+    </div>
+    {{#if ethereum.isBurningShib}}
+      <div>
+        Welcome to the <b>$SHIB</b> Burn Portal! We’re excited to see you here. This burn portal is set to make it rewarding for users to regularly burn <b>$SHIB</b> while effectively reducing its circulating supply. 
+        <br>
+        <br>
+        Burn <b>$SHIB</b>, reduce its circulating supply, and generate passive income while doing so!
+      </div>
+      <br>
+    {{/if}}
+    {{#link-to 'details' class='gold'}}
+      LEARN MORE
+    {{/link-to}}
+  </div>
+</div>

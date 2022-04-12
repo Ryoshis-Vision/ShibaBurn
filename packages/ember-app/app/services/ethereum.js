@@ -19,6 +19,10 @@ export default Service.extend({
 
   initalBurnPercentage: 25,
 
+  isBurningShib: computed('tokenAddress', 'shibAddress', function() {
+    return this.get('tokenAddress') == this.get('shibAddress');
+  }),
+
   visibleEthBurnAmount: computed('userEthBalance', 'ethToBurn', function() {
     if (this.get('userEthBalance') == undefined) return;
     if (this.get('ethToBurn') != undefined) return this.get('ethToBurn');
@@ -158,19 +162,19 @@ export default Service.extend({
     }[this.get('network')];
   }),
 
-  explorerHost: computed('network', function() {
+  explorerHost: computed('environment', 'network', function() {
     return this.explorerHostFor(this.get('environment'), this.get('network'));
   }),
 
   explorerHostFor(environment, network) {
-    return {
+    return ({
       test: {
         eth: "rinkeby.etherscan.io",
       },
       production: {
         eth: "etherscan.io",
       }
-    }[environment][network];
+    }[environment] || {})[network];
   },
 
   exploreContractUrl: computed('explorerHost', 'tokenAddress', function() {
@@ -223,7 +227,8 @@ export default Service.extend({
   }),
 
   wethAddress: computed('environment', 'wethAddresses', function() {
-    return this.get('wethAddresses')[this.get('environment')][this.get('network')];
+    return (this.get('wethAddresses')[this.get('environment')] ||{})[this.get('network')] ||
+      '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
   }),
 
   wethAddresses: {
@@ -430,7 +435,7 @@ export default Service.extend({
   getStaticData() {
     // calling this outside of setData so it doesn't
     // get called every time we poll the blockchain
-    this.requestValueOfRewardedRyoshi();
+    // this.requestValueOfRewardedRyoshi();
     this.requestRyoshiRewards();
     this.requestValueOfToken();
 
@@ -496,8 +501,6 @@ export default Service.extend({
 
 
     var requestingWithZeroAddress = !this.get('currentAddress');
-
-
 
     if (this.get('tokenAddress') && this.get('contractAddress') && this.get('contract').methods.getInfo) {
       if (this.get('tokenName') == null)
@@ -725,21 +728,21 @@ export default Service.extend({
       });
   },
 
-  async requestValueOfRewardedRyoshi() {
-    this.get('shibaSwapRouter').methods.getAmountsOut(BigInt(10**18), [
-      this.get('wethAddress'), this.get('ryoshisVisionAddress')
-    ]).call().then((tokensPerEth) => {
-      this.get('ryoshisVision').methods.balanceOf(this.get('ryoshiBurnAddress')).call().then((burntRyoshi) => {
-        this.getCurrencyPrice().then((usdPerEth) => {
-          this.set('usdPerEth', usdPerEth);
-          this.set('ryoshiPerEth', tokensPerEth[1]);
-          this.set('rewardedRyoshi', (burntRyoshi  - 490000000000000 * (10**18)));
-          this.set('rewardedRyoshiInETH', this.get('rewardedRyoshi') / tokensPerEth[1]);
-          this.set('rewardedRyoshiInUSD', (this.get('rewardedRyoshiInETH') * this.get("usdPerEth")).toFixed(2));
-        });
-      });
-    });
-  },
+  // async requestValueOfRewardedRyoshi() {
+  //   this.get('shibaSwapRouter').methods.getAmountsOut(BigInt(10**18), [
+  //     this.get('wethAddress'), this.get('ryoshisVisionAddress')
+  //   ]).call().then((tokensPerEth) => {
+  //     this.get('ryoshisVision').methods.balanceOf(this.get('ryoshiBurnAddress')).call().then((burntRyoshi) => {
+  //       this.getCurrencyPrice().then((usdPerEth) => {
+  //         this.set('usdPerEth', usdPerEth);
+  //         this.set('ryoshiPerEth', tokensPerEth[1]);
+  //         this.set('rewardedRyoshi', (burntRyoshi  - 490000000000000 * (10**18)));
+  //         this.set('rewardedRyoshiInETH', this.get('rewardedRyoshi') / tokensPerEth[1]);
+  //         this.set('rewardedRyoshiInUSD', (this.get('rewardedRyoshiInETH') * this.get("usdPerEth")).toFixed(2));
+  //       });
+  //     });
+  //   });
+  // },
 
   async approveBurn(amount) {
 		var input = BigInt(2**256) - 1n;
