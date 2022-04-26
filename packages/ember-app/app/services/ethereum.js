@@ -467,7 +467,7 @@ export default Service.extend({
     return {
       eth: this.get('useLocalFork') ? 31337 : 1,
       // eth: 4,             // tesetnet
-    }
+    }[network];
   },
 
   networkForCurrentChain: computed('currentChain', function() {
@@ -490,13 +490,13 @@ export default Service.extend({
   }),
 
   setData() {
+    if (this.get('currentChain') == null || window.ethereum == null) return;
     var networkChanged = this.get('currentChain') != window.ethereum.networkVersion;
     console.log("CHAIN WAS: ", this.get('currentChain'), "New Chain:", window.ethereum.networkVersion, "Changed:", networkChanged);
     this.set('currentChain', Number.parseInt(window.ethereum.networkVersion));
     window.ethereum.request({ method: 'eth_accounts' }).then((addr) => {
       this.set('currentAddress', addr[0]?.toUpperCase().replace('X', 'x'));
     });
-    if (this.get('currentChain') == null) return 
     if (networkChanged) this.set('network', this.get('networkForCurrentChain') || this.get('defaultNetwork'));
 
 
