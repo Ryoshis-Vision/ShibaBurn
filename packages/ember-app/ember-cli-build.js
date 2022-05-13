@@ -17,7 +17,17 @@ module.exports = function (defaults) {
 
     minifyCSS: {
       enabled: false
+    },
+
+    autoImport: {
+      webpack: {
+        node: {
+          global: true,
+          fs: 'empty'
+        }
+      }
     }
+
   });
 
   // Use `app.import` to add additional libraries to the generated
