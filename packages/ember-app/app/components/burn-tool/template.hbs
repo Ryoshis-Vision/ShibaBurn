@@ -14,7 +14,6 @@
                 {{commatize ethereum.userTokenBalance}}
                 {{ethereum.tokenSymbol}}
               </div>
-              {{ember-slider initialValue=ethereum.initalBurnPercentage config=sliderOptions onChange=(action 'onPercentChange')}}
 
               <div class='flex-center margin-top'>
                 <div {{action 'onPercentChange' 25}}>

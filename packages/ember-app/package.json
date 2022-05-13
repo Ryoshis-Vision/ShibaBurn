@@ -27,7 +27,6 @@
     "@ember/test-helpers": "^2.2.0",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
-    "@love-open-source/ember-slider": "^1.2.6",
     "babel-eslint": "^10.1.0",
     "bn": "^1.0.5",
     "broccoli-asset-rev": "^3.0.0",
