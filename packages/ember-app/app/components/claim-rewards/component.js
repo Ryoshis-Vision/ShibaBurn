@@ -23,42 +23,16 @@ export default EmberComponent.extend({
     });
   },
 
-  generateLeaf(address, value){
-    return Buffer.from(
-      // Hash in appropriate Merkle format
-      ethers.utils
-      .solidityKeccak256(["address", "uint256"], [address, value])
-      .slice(2),
-      "hex"
-    );
-  },
-
-
-  tree: computed('config', function() {
-    const merkleTree = new MerkleTree(
-      // Generate leafs
-      Object.entries(this.get('allUsers')).map(([address, tokens]) =>
-        this.generateLeaf(
-          ethers.utils.getAddress(address),
-          ethers.utils.parseUnits(tokens.toString(), this.get('config').decimals).toString()
-        )
-      ),
-      keccak256, // Hashing function
-      { sortPairs: true }
-    );
-
-    return merkleTree;
+  claims: computed('config', function() {
+    return this.get('config')?.claims;
   }),
 
-  allUsers: computed('config', function() {
-    return this.get('config')?.data?.users;
-  }),
-
-  claimable: computed('address', 'config', 'allUsers', function() {
+  claimable: computed('address', 'config', 'claims', function() {
     if (this.get('config') == null) return 0;
 
     var address = this.get('address');
-    return this.get('allUsers')[address]; 
+    var amount = Number(this.get('claims')[address]?.amount || 0);
+    return Math.floor((amount * 100 / Math.pow(10, 18))) / 100;
   }),
 
   address: computed('ethereum.currentAddress', function() {
@@ -69,13 +43,12 @@ export default EmberComponent.extend({
 
     claim() {
       var address = this.get('address');
-      var tokens = this.get('claimable');
-      var numTokens = ethers.utils.parseUnits(tokens.toString(), this.get('config').decimals).toString();
-      var leaf = this.generateLeaf( address, numTokens);
-      var proof = this.get('tree').getHexProof(leaf);
+      var data = this.get('claims')[address];
+      var amount = data.amount;
+      var proof = data.proof;
+      var index = data.index;
 
-
-      var contractCall = this.get('ethereum.rewarder').methods.claim(address, numTokens, proof);
+      var contractCall = this.get('ethereum.rewarder').methods.claim(index, address, amount, proof);
 
       contractCall.estimateGas({
         from: this.get('ethereum.currentAddress')

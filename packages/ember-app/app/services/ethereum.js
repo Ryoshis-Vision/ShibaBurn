@@ -212,7 +212,7 @@ export default Service.extend({
   }),
 
   rewarderAddress: computed('environment', 'network', function() {
-    return "0x7732674B5E5FfeC4785AEFdAEa807EeCA383B5e6";
+    return "0xD43C2F31906140d148B18BA8f2f87c5671D0413a";
   }),
 
   rewarder: computed('environment', 'network', function() {

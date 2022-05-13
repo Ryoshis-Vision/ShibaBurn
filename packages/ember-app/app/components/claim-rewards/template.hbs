@@ -2,16 +2,16 @@
   {{#if ethereum.currentAddress }}
     {{#if ethereum.userDataRetrieved}}
       {{#each ethereum.rewardConfigs as |config|}}
-        <div class='margin-inbetween half-width inner-wrapper double-padded align-center margin-top'>
+        <div class='margin-inbetween reward-wrapper inner-wrapper double-padded align-center margin-top'>
           Woofable {{config.rewardName}}:
           <div class='font-34 padded '>
             <b class=''>
-            0.0000
+              {{commatize claimable}}
             </b>
             <div class='font-14 green bold'>
               Woofed till now:
               <span class='nobreak'>
-                {{commatize claimable}} {{config.rewardName}}
+                0 {{config.rewardName}}
               </span>
             </div>
           </div>
